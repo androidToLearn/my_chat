@@ -27,16 +27,32 @@ def add_user():
             name_user = file.read()
     except Exception:
         name_user = request.form.get('name')
+        password = request.form.get('password')
+        if isNameNotAppear(name_user, password):
+            users.append({'user_name': name_user, 'password': password})
+        elif not isExistsUser(name_user, password):
+            return jsonify({'message': 'bad password'})
         contact = name_user
         with open('name_user.txt', 'w', encoding='utf-8') as file:
             file.write(name_user)
-        if not name_user in users:
-            users.append(name_user)
-
     with open('contact.txt', 'w', encoding='utf-8') as file:
         file.write(contact)
     isWasInAdd_User = True
     return redirect(url_for('update_chat', name=name_user, contact=contact))
+
+
+def isNameNotAppear(name, password):
+    for user in users:
+        if str(user['user_name']) == name:
+            return False
+    return True
+
+
+def isExistsUser(name, password):
+    for user in users:
+        if user['user_name'] == name and user['password'] == password:
+            return True
+    return False
 
 
 @app.route('/update_chat/<name>/<contact>', methods=['get'])
