@@ -68,6 +68,7 @@
                 {%endif%}
                 {%endfor%}
             </div>
+<<<<<<< HEAD
             <div style="flex-grow: 1; height: 100vh; overflow-y: auto;overflow-y: auto;">
                 {%for user in users%}
                 {%if contact == user['user_name']%}
@@ -77,6 +78,18 @@
                 {%else%}
                 <div class="other_chat">
                     <p style="color: black;" class="b">{{user['user_name']}}</p>
+=======
+            <div style="flex-grow: 1; height: 100vh; overflow-y: auto;     overflow-y: auto;
+">
+                {%for user in users%}
+                {%if contact == user%}
+                <div class="in_chat">
+                    <p style="color: black;">{{user}}</p>
+                </div>
+                {%else%}
+                <div class="other_chat">
+                    <p style="color: black;" class="b">{{user}}</p>
+>>>>>>> c686cbf (Your commit message)
                 </div>
                 {%endif%}
                 {%endfor%}
