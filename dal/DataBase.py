@@ -11,13 +11,8 @@ class DataBase:
         self.conn = None
 
     def doConnection(self):
-        DATABASE_PASSWORD = os.getenv('DATABASE_PASSWORD')
-        DATABASE_HOST = os.getenv('DATABASE_HOST')
-        DATABASE_DBNAME = os.getenv('DATABASE_DBNAME')
-        DATABASE_USER = os.getenv('DATABASE_USER')
-        DATABASE_PORT = os.getenv('DATABASE_PORT')
-        self.conn = psycopg.connect(dbname=DATABASE_DBNAME, password=DATABASE_PASSWORD,
-                                    user=DATABASE_USER, host=DATABASE_HOST, port=DATABASE_PORT)
+
+        self.conn = psycopg.connect(os.getenv('DATA_BASE_URL'))
         self.cursor = self.conn.cursor()
         return self.cursor
 
